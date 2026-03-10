@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 
 interface NavbarProps {
   onBookingClick: () => void
@@ -43,14 +44,18 @@ export function Navbar({ onBookingClick }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div
-          className="flex items-center gap-2"
+          className="flex items-center gap-1"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">QC</span>
-          </div>
-          <span className="font-bold text-lg hidden sm:inline">Quality Control</span>
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-GwtHQwmULwl76IexmfihSLNa9KXQB2.png"
+            alt="Quality Control Auto Detailing"
+            width={120}
+            height={40}
+            priority
+            className="h-10 w-auto"
+          />
         </motion.div>
 
         {/* Desktop Navigation */}

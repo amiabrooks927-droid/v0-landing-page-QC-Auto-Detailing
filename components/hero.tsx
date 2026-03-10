@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 
 interface HeroProps {
   onBookingClick: () => void
@@ -59,6 +60,18 @@ export function Hero({ onBookingClick }: HeroProps) {
           initial="hidden"
           animate="visible"
         >
+          {/* Logo */}
+          <motion.div variants={itemVariants} className="flex justify-center mb-6">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%285%29-UBAzodRRUH98VnM1FF1L8Q9W8Adnel.png"
+              alt="Quality Control Auto Detailing"
+              width={400}
+              height={200}
+              priority
+              className="h-auto max-w-sm"
+            />
+          </motion.div>
+
           {/* Main headline */}
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-balance">

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react'
+import Image from 'next/image'
 
 export function Footer() {
   const socialLinks = [
@@ -69,12 +70,13 @@ export function Footer() {
         >
           {/* Brand Info */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">QC</span>
-              </div>
-              <span className="font-bold text-lg text-white">Quality Control</span>
-            </div>
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/QC%20%281%29-mpUpYL69aDMHmqLJNqHsEmbs7UAikC.png"
+              alt="Quality Control Auto Detailing"
+              width={150}
+              height={80}
+              className="h-auto max-w-xs"
+            />
             <p className="text-gray-400 text-sm">
               Premium mobile auto detailing service in Richmond. We bring professional detailing to your location.
             </p>
