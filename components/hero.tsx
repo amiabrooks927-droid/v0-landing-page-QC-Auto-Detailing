@@ -63,12 +63,12 @@ export function Hero({ onBookingClick }: HeroProps) {
           {/* Logo */}
           <motion.div variants={itemVariants} className="flex justify-center mb-6">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%285%29-UBAzodRRUH98VnM1FF1L8Q9W8Adnel.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-PTyAiaP5RwAMiTlnUWkfNRvu6MThER.png"
               alt="Quality Control Auto Detailing"
-              width={400}
-              height={200}
+              width={500}
+              height={250}
               priority
-              className="h-auto max-w-sm"
+              className="h-auto max-w-lg"
             />
           </motion.div>
 
@@ -107,23 +107,35 @@ export function Hero({ onBookingClick }: HeroProps) {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
           >
-            <Button
-              onClick={onBookingClick}
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg w-full sm:w-auto"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              Book Your Detail
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg w-full sm:w-auto"
-              onClick={() => {
-                document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })
-              }}
+              <Button
+                onClick={onBookingClick}
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg w-full sm:w-auto"
+              >
+                Book Your Detail
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              See Our Results
-            </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/20 hover:bg-white/5 text-white px-8 py-6 text-lg w-full sm:w-auto"
+                onClick={() => {
+                  document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                See Our Results
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

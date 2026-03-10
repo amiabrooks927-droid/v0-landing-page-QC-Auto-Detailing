@@ -27,14 +27,14 @@ export function Footer() {
     {
       icon: <Phone className="w-5 h-5" />,
       label: 'Phone',
-      value: '(804) 555-0147',
-      href: 'tel:+1(804)555-0147',
+      value: '(804) 300-6441',
+      href: 'tel:+18043006441',
     },
     {
       icon: <Mail className="w-5 h-5" />,
       label: 'Email',
-      value: 'info@qualitycontrol.com',
-      href: 'mailto:info@qualitycontrol.com',
+      value: 'info@qcautodetailing.com',
+      href: 'mailto:info@qcautodetailing.com',
     },
   ]
 
