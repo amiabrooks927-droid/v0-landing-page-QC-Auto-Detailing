@@ -24,10 +24,8 @@ export function Navbar({ onBookingClick }: NavbarProps) {
   }, [])
 
   const navLinks = [
-    { label: 'Services', href: '#services' },
-    { label: 'Results', href: '#results' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Packages', href: '#packages' },
+    { label: 'Book', href: '#booking' },
   ]
 
   return (
@@ -54,7 +52,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
             width={180}
             height={60}
             priority
-            className="h-16 w-auto"
+            style={{ height: '64px', width: 'auto', aspectRatio: '3/1' }}
           />
         </motion.div>
 
