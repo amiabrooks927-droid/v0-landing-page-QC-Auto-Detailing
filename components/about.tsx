@@ -11,13 +11,13 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl"
+          className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-8">
             About Quality Control Auto Detailing
           </h2>
           
-          <p className="text-lg text-gray-700 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
             Quality Control Auto Detailing provides mobile auto detailing in Richmond and surrounding areas. We offer Stage 1 and Stage 2 full interior and exterior details, plus interior-only and exterior-only packages. Services include deep interior cleaning, exterior wash and decontamination, wheels and tires, and spray ceramic protection, with add-ons like pet hair and headlight restoration. We come to you with clear pricing and convenient scheduling.
           </p>
         </motion.div>

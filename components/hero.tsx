@@ -44,14 +44,14 @@ export function Hero({ onBookingClick }: HeroProps) {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
         <motion.div
-          className="space-y-6 max-w-2xl"
+          className="space-y-6 max-w-2xl mx-auto text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Label */}
           <motion.div variants={itemVariants}>
-            <span className="text-blue-400 uppercase text-sm font-bold tracking-widest">
+            <span className="text-blue-400 uppercase text-xs sm:text-sm font-bold tracking-widest">
               Mobile Auto Detailing in Richmond VA
             </span>
           </motion.div>
@@ -59,7 +59,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           {/* Main Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
           >
             Performance-Level Detailing, Delivered to Your Driveway.
           </motion.h1>
@@ -67,7 +67,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-start gap-6 pt-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6"
           >
             <Button
               size="lg"
