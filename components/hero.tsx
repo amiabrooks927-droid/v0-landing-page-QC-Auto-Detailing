@@ -64,14 +64,6 @@ export function Hero({ onBookingClick }: HeroProps) {
             Performance-Level Detailing, Delivered to Your Driveway.
           </motion.h1>
 
-          {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg sm:text-xl text-gray-100 leading-relaxed"
-          >
-            Stage 1 and Stage 2 full interior and exterior details for daily drivers and weekend builds in RVA.
-          </motion.p>
-
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}

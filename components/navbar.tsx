@@ -43,17 +43,17 @@ export function Navbar({ onBookingClick }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div
-          className="flex items-center gap-1"
+          className="flex items-center"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-PTyAiaP5RwAMiTlnUWkfNRvu6MThER.png"
             alt="Quality Control Auto Detailing"
-            width={180}
-            height={60}
+            width={150}
+            height={50}
             priority
-            style={{ height: '64px', width: 'auto', aspectRatio: '3/1' }}
+            style={{ width: '150px', height: 'auto' }}
           />
         </motion.div>
 
