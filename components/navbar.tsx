@@ -41,25 +41,25 @@ export function Navbar({ onBookingClick }: NavbarProps) {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between h-16 sm:h-20">
         {/* Logo */}
         <motion.div
-          className="flex items-center"
+          className="flex items-center flex-shrink-0"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-PTyAiaP5RwAMiTlnUWkfNRvu6MThER.png"
             alt="Quality Control Auto Detailing"
-            width={180}
-            height={60}
+            width={200}
+            height={56}
             priority
-            style={{ width: '180px', height: 'auto' }}
+            style={{ width: '200px', height: '56px', objectFit: 'contain' }}
           />
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
           {navLinks.map((link) => (
             <a
               key={link.label}
