@@ -34,6 +34,10 @@ const faqItems: FAQItem[] = [
     question: 'How far in advance should I book?',
     answer: 'We recommend booking at least a few days in advance to secure your preferred date and time. During peak seasons, booking 1-2 weeks ahead is ideal.',
   },
+  {
+    question: 'Do I need to provide water and power?',
+    answer: 'No, we bring our own water supply and power equipment. We\'re completely self-contained and ready to work at your location. Just provide us with a safe place to park and access to your vehicle.',
+  },
 ]
 
 export function FAQ() {

@@ -49,7 +49,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           transition={{ type: 'spring', stiffness: 300 }}
         >
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-PTyAiaP5RwAMiTlnUWkfNRvu6MThER.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/QC%20%281%29-0OHEqNaqljI1q0zPz5a3ObM6NGFFFh.png"
             alt="Quality Control Auto Detailing"
             width={200}
             height={56}
