@@ -32,11 +32,10 @@ export function Navbar({ onBookingClick }: NavbarProps) {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-black/80 backdrop-blur-md border-b border-white/10'
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-black/80 backdrop-blur-md border-b border-white/10'
+        : 'bg-transparent'
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -54,7 +53,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
             width={200}
             height={56}
             priority
-            style={{ width: '200px', height: '56px', objectFit: 'contain' }}
+            style={{ width: '150px', height: '56px', objectFit: 'contain' }}
           />
         </motion.div>
 
