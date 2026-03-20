@@ -24,8 +24,9 @@ export function Navbar({ onBookingClick }: NavbarProps) {
   }, [])
 
   const navLinks = [
-    { label: 'Packages', href: '#packages' },
-    { label: 'Book', href: '#booking' },
+    { label: 'Services', href: '#services' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
   ]
 
   return (
@@ -72,10 +73,10 @@ export function Navbar({ onBookingClick }: NavbarProps) {
         {/* CTA Button - Desktop */}
         <div className="hidden sm:block">
           <Button
-            onClick={onBookingClick}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-blue-600 hover:bg-blue-700 text-white"
           >
-            Book Your Detail
+            Book Now
           </Button>
         </div>
 
@@ -112,12 +113,12 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           ))}
           <Button
             onClick={() => {
-              onBookingClick()
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
               setIsMobileMenuOpen(false)
             }}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white"
           >
-            Book Your Detail
+            Book Now
           </Button>
         </div>
       </motion.div>

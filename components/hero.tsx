@@ -13,8 +13,8 @@ export function Hero({ onBookingClick }: HeroProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
       },
     },
   }
@@ -24,46 +24,72 @@ export function Hero({ onBookingClick }: HeroProps) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+      transition: { duration: 0.8, ease: 'easeOut' },
     },
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-12 bg-black">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative w-full min-h-screen pt-20 flex items-center justify-center overflow-hidden">
+      {/* Background image with dark overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=1600&h=900&fit=crop)',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
         <motion.div
-          className="space-y-6"
+          className="space-y-6 max-w-2xl"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Main headline */}
-          <motion.h1 
+          {/* Label */}
+          <motion.div variants={itemVariants}>
+            <span className="text-blue-400 uppercase text-sm font-bold tracking-widest">
+              Mobile Auto Detailing in Richmond VA
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight"
           >
-            Quality Control Auto Detailing – Mobile in RVA
+            Performance-Level Detailing, Delivered to Your Driveway.
           </motion.h1>
 
           {/* Subheading */}
-          <motion.p 
+          <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-gray-100 leading-relaxed"
           >
-            Stage 1 and Stage 2 full interior/exterior details that come to your driveway.
+            Stage 1 and Stage 2 full interior and exterior details for daily drivers and weekend builds in RVA.
           </motion.p>
 
-          {/* Single CTA Button */}
-          <motion.div variants={itemVariants} className="pt-4">
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-start gap-6 pt-6"
+          >
             <Button
-              onClick={() => {
-                document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
-              }}
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold"
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              View Packages & Book
+              View Services & Pricing
             </Button>
+            <button
+              className="text-blue-300 hover:text-blue-200 transition-colors font-semibold text-base"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Text for Fast Quote →
+            </button>
           </motion.div>
         </motion.div>
       </div>
