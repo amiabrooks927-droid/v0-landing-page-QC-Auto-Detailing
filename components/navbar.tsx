@@ -26,6 +26,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
   const navLinks = [
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -40,7 +41,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
         {/* Logo */}
         <motion.div
           className="flex items-center"
@@ -50,15 +51,15 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Quality%20Control%20%284%29-PTyAiaP5RwAMiTlnUWkfNRvu6MThER.png"
             alt="Quality Control Auto Detailing"
-            width={150}
-            height={50}
+            width={180}
+            height={60}
             priority
-            style={{ width: '150px', height: 'auto' }}
+            style={{ width: '180px', height: 'auto' }}
           />
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.label}
