@@ -34,11 +34,11 @@ export function Hero({ onBookingClick }: HeroProps) {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=1600&h=900&fit=crop)',
+          backgroundImage: 'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AD%20background-uwAnJQYPcyOWjLTxPPOp2oK6elg6P2.jpg)',
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
@@ -51,7 +51,7 @@ export function Hero({ onBookingClick }: HeroProps) {
         >
           {/* Label */}
           <motion.div variants={itemVariants}>
-            <span className="text-blue-400 uppercase text-xs sm:text-sm font-bold tracking-widest">
+            <span className="text-blue-600 uppercase text-xs sm:text-sm font-bold tracking-widest">
               Mobile Auto Detailing in Richmond VA
             </span>
           </motion.div>
@@ -59,7 +59,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           {/* Main Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight"
           >
             Performance-Level Detailing, Delivered to Your Driveway.
           </motion.h1>
@@ -77,7 +77,7 @@ export function Hero({ onBookingClick }: HeroProps) {
               View Services & Pricing
             </Button>
             <button
-              className="text-blue-300 hover:text-blue-200 transition-colors font-semibold text-base"
+              className="text-black hover:text-gray-800 transition-colors font-semibold text-base"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Text for Fast Quote →
