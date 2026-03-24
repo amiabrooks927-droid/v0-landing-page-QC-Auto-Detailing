@@ -51,7 +51,7 @@ export function Hero({ onBookingClick }: HeroProps) {
         >
           {/* Label */}
           <motion.div variants={itemVariants}>
-            <span className="text-blue-600 uppercase text-xs sm:text-sm font-bold tracking-widest">
+            <span className="text-blue-400 uppercase text-xs sm:text-sm font-bold tracking-widest">
               Mobile Auto Detailing in Richmond VA
             </span>
           </motion.div>
@@ -59,7 +59,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           {/* Main Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
           >
             Performance-Level Detailing, Delivered to Your Driveway.
           </motion.h1>
@@ -77,7 +77,7 @@ export function Hero({ onBookingClick }: HeroProps) {
               View Services & Pricing
             </Button>
             <button
-              className="text-black hover:text-gray-800 transition-colors font-semibold text-base"
+              className="text-white hover:text-gray-200 transition-colors font-semibold text-base"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Text for Fast Quote →
