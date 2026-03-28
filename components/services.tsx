@@ -3,13 +3,22 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, X, Check } from 'lucide-react'
 import Image from 'next/image'
 
 type VehicleSize = 'sedan' | 'small-suv' | 'large-suv'
+type WorkflowStep = 'package' | 'size' | 'addons'
+
+interface AddOn {
+  id: string
+  label: string
+  description: string
+  price: string
+}
 
 interface StageOption {
   label: string
+  shortDescription: string
   price: {
     sedan: string
     'small-suv': string
@@ -24,23 +33,34 @@ interface StageCard {
   options: StageOption[]
 }
 
+const addOns: AddOn[] = [
+  { id: 'pet-hair', label: 'Pet Hair Removal', description: 'Deep extraction for all pet hair from interior.', price: 'from $30' },
+  { id: 'carpet-shampoo', label: 'Carpet & Cloth Seat Shampoo', description: 'Hot water extraction for carpets and fabric seats.', price: 'from $50' },
+  { id: 'leather', label: 'Leather Cleaning & Conditioning', description: 'Deep clean and protect leather surfaces.', price: 'from $40' },
+  { id: 'headlight', label: 'Headlight Restoration', description: 'Restore clarity to oxidized headlights.', price: 'from $80' },
+  { id: 'engine', label: 'Engine Bay Cleaning', description: 'Safe, detailed cleaning of engine bay.', price: 'from $60' },
+]
+
 const stageCards: StageCard[] = [
   {
     stage: 'Stage 1',
-    description: 'Full, thorough interior & exterior detail. Ideal for a complete reset.',
+    description: 'A thorough reset delivering a clean, refreshed vehicle with essential protection to maintain results.',
     options: [
       {
         label: 'Stage 1 – Interior Only',
+        shortDescription: 'Complete vacuum, wipe-down, and light stain treatment for a fresh interior.',
         price: { sedan: '$120', 'small-suv': '$140', 'large-suv': '$160' },
         image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=300&fit=crop',
       },
       {
         label: 'Stage 1 – Exterior Only',
+        shortDescription: 'Foam wash, bug removal, and protective spray to bring out your vehicle\'s shine.',
         price: { sedan: '$100', 'small-suv': '$120', 'large-suv': '$140' },
         image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=300&fit=crop',
       },
       {
         label: 'Stage 1 – Full Detail (In & Out)',
+        shortDescription: 'Complete interior and exterior refresh for a total reset.',
         price: { sedan: '$180', 'small-suv': '$210', 'large-suv': '$240' },
         image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=500&h=300&fit=crop',
       },
@@ -48,20 +68,23 @@ const stageCards: StageCard[] = [
   },
   {
     stage: 'Stage 2',
-    description: 'Stage 1 plus extra decontamination and longer-lasting protection.',
+    description: 'Our premium finish with extra decontamination, intensive stain work, and longer-lasting protection.',
     options: [
       {
         label: 'Stage 2 – Interior Only',
+        shortDescription: 'Deep interior with extra steam, stain work, and protection for a showroom finish.',
         price: { sedan: '$160', 'small-suv': '$190', 'large-suv': '$220' },
         image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=300&fit=crop',
       },
       {
         label: 'Stage 2 – Exterior Only',
+        shortDescription: 'Enhanced exterior with extra decon and premium protection for durability.',
         price: { sedan: '$150', 'small-suv': '$170', 'large-suv': '$190' },
         image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=300&fit=crop',
       },
       {
         label: 'Stage 2 – Full Detail (In & Out)',
+        shortDescription: 'Complete top-to-bottom detail with enhanced protection for your vehicle\'s best finish.',
         price: { sedan: '$240', 'small-suv': '$270', 'large-suv': '$300' },
         image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=500&h=300&fit=crop',
       },
@@ -76,6 +99,13 @@ interface ServicesProps {
 export function Services({ onBookingClick }: ServicesProps) {
   const [expandedStage, setExpandedStage] = useState<string | null>(null)
   const [selectedVehicleSize, setSelectedVehicleSize] = useState<VehicleSize>('sedan')
+  const [workflowStep, setWorkflowStep] = useState<WorkflowStep>('package')
+  const [selectedPackage, setSelectedPackage] = useState<{ stage: string; option: string } | null>(null)
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
+
+  const toggleAddOn = (id: string) => {
+    setSelectedAddOns((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
 
   return (
     <section id="services" className="py-16 sm:py-20 lg:py-24 bg-black">
@@ -92,30 +122,6 @@ export function Services({ onBookingClick }: ServicesProps) {
           <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed mb-8">
             Choose Stage 1 or Stage 2 for a complete reset or enhanced protection.
           </p>
-
-          {/* Vehicle Size Selector */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="text-white font-semibold">Select Vehicle Size:</span>
-            <div className="flex gap-3">
-              {(['sedan', 'small-suv', 'large-suv'] as VehicleSize[]).map((size) => (
-                <motion.button
-                  key={size}
-                  onClick={() => setSelectedVehicleSize(size)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 ${
-                    selectedVehicleSize === size
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                  }`}
-                >
-                  {size === 'sedan' && 'Sedan'}
-                  {size === 'small-suv' && 'Small SUV'}
-                  {size === 'large-suv' && 'Large SUV/Truck'}
-                </motion.button>
-              ))}
-            </div>
-          </div>
         </motion.div>
 
         {/* Stage Cards Grid */}
@@ -130,11 +136,11 @@ export function Services({ onBookingClick }: ServicesProps) {
               className="bg-white/5 border-2 border-blue-500 rounded-3xl p-8 flex flex-col"
             >
               {/* Stage Title */}
-              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">
                 {card.stage}
               </h3>
 
-              {/* Description */}
+              {/* Stage Description */}
               <p className="text-gray-300 text-base leading-relaxed mb-8 flex-grow">
                 {card.description}
               </p>
@@ -190,17 +196,20 @@ export function Services({ onBookingClick }: ServicesProps) {
                           <p className="text-white font-semibold text-sm sm:text-base mb-2">
                             {option.label}
                           </p>
+                          <p className="text-gray-400 text-xs sm:text-sm mb-3">
+                            {option.shortDescription}
+                          </p>
                           <p className="text-blue-300 font-bold text-lg mb-4">
                             {option.price[selectedVehicleSize]}
                           </p>
                           <button
                             onClick={() => {
-                              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                              setExpandedStage(null)
+                              setSelectedPackage({ stage: card.stage, option: option.label })
+                              setWorkflowStep('size')
                             }}
                             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold text-sm transition-colors"
                           >
-                            Request Quote
+                            Book Now
                           </button>
                         </div>
                       </motion.div>
@@ -211,6 +220,140 @@ export function Services({ onBookingClick }: ServicesProps) {
             </motion.div>
           ))}
         </div>
+
+        {/* Workflow Modal */}
+        <AnimatePresence>
+          {selectedPackage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+              onClick={() => {
+                setSelectedPackage(null)
+                setWorkflowStep('package')
+                setSelectedAddOns([])
+              }}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-black border-2 border-blue-500 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => {
+                    setSelectedPackage(null)
+                    setWorkflowStep('package')
+                    setSelectedAddOns([])
+                  }}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* Size Selection Step */}
+                {workflowStep === 'size' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-6"
+                  >
+                    <h3 className="text-2xl font-bold text-white">Select Vehicle Size</h3>
+                    <div className="space-y-3">
+                      {(['sedan', 'small-suv', 'large-suv'] as VehicleSize[]).map((size) => (
+                        <motion.button
+                          key={size}
+                          onClick={() => {
+                            setSelectedVehicleSize(size)
+                            setWorkflowStep('addons')
+                          }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="w-full p-4 bg-white/10 hover:bg-blue-600 border border-white/20 rounded-lg text-white font-semibold transition-colors text-left"
+                        >
+                          {size === 'sedan' && '🚗 Car / Sedan'}
+                          {size === 'small-suv' && '🚙 Small SUV'}
+                          {size === 'large-suv' && '🚕 Large SUV or Truck'}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Add-Ons Step */}
+                {workflowStep === 'addons' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-6"
+                  >
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Add‑On Services</h3>
+                      <p className="text-gray-400 text-sm">Enhance your package with optional services</p>
+                    </div>
+
+                    <div className="space-y-3">
+                      {addOns.map((addon) => (
+                        <motion.button
+                          key={addon.id}
+                          onClick={() => toggleAddOn(addon.id)}
+                          whileHover={{ scale: 1.01 }}
+                          className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
+                            selectedAddOns.includes(addon.id)
+                              ? 'bg-blue-600/20 border-blue-500'
+                              : 'bg-white/5 border-white/20 hover:border-white/40'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div
+                              className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 ${
+                                selectedAddOns.includes(addon.id)
+                                  ? 'bg-blue-600 border-blue-600'
+                                  : 'border-gray-400'
+                              }`}
+                            >
+                              {selectedAddOns.includes(addon.id) && (
+                                <Check className="w-3 h-3 text-white" />
+                              )}
+                            </div>
+                            <div className="flex-grow">
+                              <p className="text-white font-semibold">{addon.label}</p>
+                              <p className="text-gray-400 text-xs">{addon.description}</p>
+                              <p className="text-blue-300 text-sm mt-1">{addon.price}</p>
+                            </div>
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    <div className="space-y-2 pt-4">
+                      <button
+                        onClick={() => {
+                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                          setSelectedPackage(null)
+                          setWorkflowStep('package')
+                          setSelectedAddOns([])
+                        }}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
+                      >
+                        Continue to Booking
+                      </button>
+                      <button
+                        onClick={() => setWorkflowStep('size')}
+                        className="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-3 rounded-lg transition-colors"
+                      >
+                        Back
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
