@@ -36,7 +36,7 @@ const faqItems: FAQItem[] = [
   },
   {
     question: 'Do I need to provide water and power?',
-    answer: 'No, we bring our own water supply and power equipment. We\'re completely self-contained and ready to work at your location. Just provide us with a safe place to park and access to your vehicle.',
+    answer: 'Yes, we do use customer water and power at this time. Please have access to an outdoor water source (hose-friendly outlet) and a nearby power outlet for our equipment. We\'ll work efficiently and safely with your utilities.',
   },
 ]
 

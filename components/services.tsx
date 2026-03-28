@@ -4,16 +4,22 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
+
+type VehicleSize = 'sedan' | 'small-suv' | 'large-suv'
 
 interface StageOption {
   label: string
-  price: string
+  price: {
+    sedan: string
+    'small-suv': string
+    'large-suv': string
+  }
+  image: string
 }
 
 interface StageCard {
   stage: string
-  startingPrice: string
-  startingPriceDesc: string
   description: string
   options: StageOption[]
 }
@@ -21,24 +27,44 @@ interface StageCard {
 const stageCards: StageCard[] = [
   {
     stage: 'Stage 1',
-    startingPrice: '$180',
-    startingPriceDesc: '(sedan full detail)',
     description: 'Full, thorough interior & exterior detail. Ideal for a complete reset.',
     options: [
-      { label: 'Stage 1 – Interior Only', price: 'from $120' },
-      { label: 'Stage 1 – Exterior Only', price: 'from $100' },
-      { label: 'Stage 1 – Full Detail (In & Out)', price: 'from $180' },
+      {
+        label: 'Stage 1 – Interior Only',
+        price: { sedan: '$120', 'small-suv': '$140', 'large-suv': '$160' },
+        image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=300&fit=crop',
+      },
+      {
+        label: 'Stage 1 – Exterior Only',
+        price: { sedan: '$100', 'small-suv': '$120', 'large-suv': '$140' },
+        image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=300&fit=crop',
+      },
+      {
+        label: 'Stage 1 – Full Detail (In & Out)',
+        price: { sedan: '$180', 'small-suv': '$210', 'large-suv': '$240' },
+        image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=500&h=300&fit=crop',
+      },
     ],
   },
   {
     stage: 'Stage 2',
-    startingPrice: '$240',
-    startingPriceDesc: '(sedan full detail)',
     description: 'Stage 1 plus extra decontamination and longer-lasting protection.',
     options: [
-      { label: 'Stage 2 – Interior Only', price: 'from $160' },
-      { label: 'Stage 2 – Exterior Only', price: 'from $150' },
-      { label: 'Stage 2 – Full Detail (In & Out)', price: 'from $240' },
+      {
+        label: 'Stage 2 – Interior Only',
+        price: { sedan: '$160', 'small-suv': '$190', 'large-suv': '$220' },
+        image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=300&fit=crop',
+      },
+      {
+        label: 'Stage 2 – Exterior Only',
+        price: { sedan: '$150', 'small-suv': '$170', 'large-suv': '$190' },
+        image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=300&fit=crop',
+      },
+      {
+        label: 'Stage 2 – Full Detail (In & Out)',
+        price: { sedan: '$240', 'small-suv': '$270', 'large-suv': '$300' },
+        image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=500&h=300&fit=crop',
+      },
     ],
   },
 ]
@@ -49,6 +75,7 @@ interface ServicesProps {
 
 export function Services({ onBookingClick }: ServicesProps) {
   const [expandedStage, setExpandedStage] = useState<string | null>(null)
+  const [selectedVehicleSize, setSelectedVehicleSize] = useState<VehicleSize>('sedan')
 
   return (
     <section id="services" className="py-16 sm:py-20 lg:py-24 bg-black">
@@ -62,9 +89,33 @@ export function Services({ onBookingClick }: ServicesProps) {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Services & Pricing</h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
-            Choose Stage 1 or Stage 2 for a complete reset or enhanced protection. All prices are starting at and may vary based on vehicle size and condition.
+          <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed mb-8">
+            Choose Stage 1 or Stage 2 for a complete reset or enhanced protection.
           </p>
+
+          {/* Vehicle Size Selector */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <span className="text-white font-semibold">Select Vehicle Size:</span>
+            <div className="flex gap-3">
+              {(['sedan', 'small-suv', 'large-suv'] as VehicleSize[]).map((size) => (
+                <motion.button
+                  key={size}
+                  onClick={() => setSelectedVehicleSize(size)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                    selectedVehicleSize === size
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  {size === 'sedan' && 'Sedan'}
+                  {size === 'small-suv' && 'Small SUV'}
+                  {size === 'large-suv' && 'Large SUV/Truck'}
+                </motion.button>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Stage Cards Grid */}
@@ -83,14 +134,6 @@ export function Services({ onBookingClick }: ServicesProps) {
                 {card.stage}
               </h3>
 
-              {/* Starting Price */}
-              <p className="text-2xl font-bold text-blue-400 mb-1">
-                {card.startingPrice}
-              </p>
-              <p className="text-gray-400 text-sm mb-6">
-                {card.startingPriceDesc}
-              </p>
-
               {/* Description */}
               <p className="text-gray-300 text-base leading-relaxed mb-8 flex-grow">
                 {card.description}
@@ -105,7 +148,7 @@ export function Services({ onBookingClick }: ServicesProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Choose Stage
+                View Options
                 <motion.div
                   animate={{ rotate: expandedStage === card.stage ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -122,27 +165,45 @@ export function Services({ onBookingClick }: ServicesProps) {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="space-y-3 overflow-hidden"
+                    className="space-y-4 overflow-hidden"
                   >
                     {card.options.map((option, optIndex) => (
-                      <motion.button
+                      <motion.div
                         key={optIndex}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: optIndex * 0.05 }}
-                        onClick={() => {
-                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                          setExpandedStage(null)
-                        }}
-                        className="w-full bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg p-4 text-left transition-all duration-200"
+                        className="bg-white/10 border border-white/20 rounded-lg overflow-hidden hover:border-white/40 transition-all duration-200"
                       >
-                        <p className="text-white font-semibold text-sm sm:text-base">
-                          {option.label}
-                        </p>
-                        <p className="text-blue-300 text-sm">
-                          {option.price}
-                        </p>
-                      </motion.button>
+                        {/* Service Image */}
+                        <div className="relative h-32 sm:h-40 overflow-hidden">
+                          <Image
+                            src={option.image}
+                            alt={option.label}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+
+                        {/* Service Info */}
+                        <div className="p-4">
+                          <p className="text-white font-semibold text-sm sm:text-base mb-2">
+                            {option.label}
+                          </p>
+                          <p className="text-blue-300 font-bold text-lg mb-4">
+                            {option.price[selectedVehicleSize]}
+                          </p>
+                          <button
+                            onClick={() => {
+                              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                              setExpandedStage(null)
+                            }}
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold text-sm transition-colors"
+                          >
+                            Request Quote
+                          </button>
+                        </div>
+                      </motion.div>
                     ))}
                   </motion.div>
                 )}

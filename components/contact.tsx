@@ -77,7 +77,7 @@ export function Contact() {
           <div className="bg-white border-2 border-blue-600 rounded-2xl p-8 space-y-4">
             <h3 className="text-3xl font-bold text-black">Thanks for your request!</h3>
             <p className="text-gray-700">
-              We've received your booking request. We'll be in touch within 2 hours to confirm.
+              We've received your special quote request. We'll be in touch within 24 hours with a personalized quote.
             </p>
           </div>
         </motion.div>
@@ -96,8 +96,8 @@ export function Contact() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">Book Your Detail</h2>
-          <p className="text-gray-700 text-lg">
+          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">Request a Special Quote</h2>
+          <p className="text-gray-700 text-lg">Have a special request or need a custom package? Fill out the form below and we'll get back to you with a personalized quote.</p>
             Call or text for fastest response, or send a request below and we'll confirm your time and final quote.
           </p>
         </motion.div>
