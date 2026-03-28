@@ -97,9 +97,7 @@ export function Contact() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">Request a Special Quote</h2>
-          <p className="text-gray-700 text-lg">Have a special request or need a custom package? Fill out the form below and we'll get back to you with a personalized quote.</p>
-            Call or text for fastest response, or send a request below and we'll confirm your time and final quote.
-          </p>
+          <p className="text-gray-700 text-lg">Have a special request or need a custom package? Fill out the form below and we'll get back to you with a personalized quote. Call or text for fastest response, or send a request below and we'll confirm your time and final quote.</p>
         </motion.div>
 
         {/* Contact Info */}
