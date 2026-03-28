@@ -71,7 +71,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           >
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold"
+              className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Services & Pricing
