@@ -196,12 +196,26 @@ export function Services({ onBookingClick }: ServicesProps) {
                           <p className="text-white font-semibold text-sm sm:text-base mb-2">
                             {option.label}
                           </p>
-                          <p className="text-gray-400 text-xs sm:text-sm mb-3">
+                          <p className="text-gray-400 text-xs sm:text-sm mb-4">
                             {option.shortDescription}
                           </p>
-                          <p className="text-blue-300 font-bold text-lg mb-4">
-                            {option.price[selectedVehicleSize]}
-                          </p>
+                          
+                          {/* Pricing for all vehicle sizes */}
+                          <div className="space-y-2 mb-4 p-3 bg-white/5 rounded-lg">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-gray-300">Sedan</span>
+                              <span className="text-blue-300 font-bold">{option.price.sedan}</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-gray-300">Small SUV</span>
+                              <span className="text-blue-300 font-bold">{option.price['small-suv']}</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-gray-300">Large SUV/Truck</span>
+                              <span className="text-blue-300 font-bold">{option.price['large-suv']}</span>
+                            </div>
+                          </div>
+                          
                           <button
                             onClick={() => {
                               setSelectedPackage({ stage: card.stage, option: option.label })
