@@ -80,7 +80,7 @@ export function Hero({ onBookingClick }: HeroProps) {
               className="text-white hover:text-gray-200 transition-colors font-semibold text-base"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Text for Fast Quote →
+              Contact for Fast Quote →
             </button>
           </motion.div>
         </motion.div>
