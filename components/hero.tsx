@@ -77,7 +77,7 @@ export function Hero({ onBookingClick }: HeroProps) {
               View Services & Pricing
             </Button>
             <button
-              className="text-white hover:text-gray-200 transition-colors font-semibold text-base"
+              className="text-white hover:text-blue-300 transition-all duration-200 font-bold text-lg hover:underline underline-offset-4"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Contact for Fast Quote →
