@@ -36,7 +36,7 @@ const faqItems: FAQItem[] = [
   },
   {
     question: 'Do I need to provide water and power?',
-    answer: 'Yes, we do require access to your water supply and a standard electrical outlet at this time. This allows us to bring professional-grade equipment and deliver the best results. Just let us know if you have any questions about the setup.',
+    answer: 'No, we bring our own water supply and power equipment. We\'re completely self-contained and ready to work at your location. Just provide us with a safe place to park and access to your vehicle.',
   },
 ]
 
