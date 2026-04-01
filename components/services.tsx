@@ -50,7 +50,7 @@ const stageCards: StageCard[] = [
         label: 'Stage 1 – Interior Only',
         shortDescription: 'Complete vacuum, wipe-down, and light stain treatment for a fresh interior.',
         price: { sedan: '$120', 'small-suv': '$140', 'large-suv': '$160' },
-        image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=300&fit=crop',
+        image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1682858110563-3f609263d418-tSKz8UgAv6MwSyd7R5tPP6snnVGYPw.avif',
       },
       {
         label: 'Stage 1 – Exterior Only',
