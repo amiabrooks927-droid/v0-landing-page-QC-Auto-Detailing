@@ -56,7 +56,7 @@ const stageCards: StageCard[] = [
         label: 'Stage 1 – Exterior Only',
         shortDescription: 'Foam wash, bug removal, and protective spray to bring out your vehicle\'s shine.',
         price: { sedan: '$100', 'small-suv': '$120', 'large-suv': '$140' },
-        image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=300&fit=crop',
+        image: 'https://unsplash.com/photos/black-bmw-m4-cs-car-dveDkZQJVjQ',
       },
       {
         label: 'Stage 1 – Full Detail (In & Out)',
@@ -199,7 +199,7 @@ export function Services({ onBookingClick }: ServicesProps) {
                           <p className="text-gray-400 text-xs sm:text-sm mb-4">
                             {option.shortDescription}
                           </p>
-                          
+
                           {/* Pricing for all vehicle sizes */}
                           <div className="space-y-2 mb-4 p-3 bg-white/5 rounded-lg">
                             <div className="flex justify-between items-center text-sm">
@@ -215,7 +215,7 @@ export function Services({ onBookingClick }: ServicesProps) {
                               <span className="text-blue-300 font-bold">{option.price['large-suv']}</span>
                             </div>
                           </div>
-                          
+
                           <button
                             onClick={() => {
                               setSelectedPackage({ stage: card.stage, option: option.label })
@@ -315,19 +315,17 @@ export function Services({ onBookingClick }: ServicesProps) {
                           key={addon.id}
                           onClick={() => toggleAddOn(addon.id)}
                           whileHover={{ scale: 1.01 }}
-                          className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
-                            selectedAddOns.includes(addon.id)
+                          className={`w-full p-4 rounded-lg border-2 transition-all text-left ${selectedAddOns.includes(addon.id)
                               ? 'bg-blue-600/20 border-blue-500'
                               : 'bg-white/5 border-white/20 hover:border-white/40'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-start gap-3">
                             <div
-                              className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 ${
-                                selectedAddOns.includes(addon.id)
+                              className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 ${selectedAddOns.includes(addon.id)
                                   ? 'bg-blue-600 border-blue-600'
                                   : 'border-gray-400'
-                              }`}
+                                }`}
                             >
                               {selectedAddOns.includes(addon.id) && (
                                 <Check className="w-3 h-3 text-white" />
