@@ -6,6 +6,7 @@ import { Star } from 'lucide-react'
 interface Review {
   id: string
   name: string
+  location: string
   service: string
   quote: string
   rating: number
@@ -15,6 +16,7 @@ const reviews: Review[] = [
   {
     id: '1',
     name: 'Marcus T.',
+    location: 'Richmond, VA',
     service: 'Full Detail',
     quote: 'Best detail I\'ve ever had. My car looks showroom fresh. Highly recommend!',
     rating: 5,
@@ -22,6 +24,7 @@ const reviews: Review[] = [
   {
     id: '2',
     name: 'Sarah J.',
+    location: 'Glen Allen, VA',
     service: 'Interior Detail',
     quote: 'Professional, punctual, and thorough. They really care about quality.',
     rating: 5,
@@ -29,6 +32,7 @@ const reviews: Review[] = [
   {
     id: '3',
     name: 'David R.',
+    location: 'Henrico, VA',
     service: 'Exterior Only',
     quote: 'Amazing shine and protection. My paint has never looked better.',
     rating: 5,
@@ -36,6 +40,7 @@ const reviews: Review[] = [
   {
     id: '4',
     name: 'Jennifer L.',
+    location: 'West End, VA',
     service: 'Full Detail',
     quote: 'Worth every penny. They treat your vehicle like their own.',
     rating: 5,
@@ -43,6 +48,7 @@ const reviews: Review[] = [
   {
     id: '5',
     name: 'Chris M.',
+    location: 'Midlothian, VA',
     service: 'Interior Detail',
     quote: 'Super responsive and flexible with scheduling. Great service.',
     rating: 5,
@@ -50,6 +56,7 @@ const reviews: Review[] = [
   {
     id: '6',
     name: 'Amanda K.',
+    location: 'Short Pump, VA',
     service: 'Full Detail',
     quote: 'Mobile service is so convenient. Quality that matches any detail shop.',
     rating: 5,
@@ -112,9 +119,12 @@ export function Testimonials() {
                   "{review.quote}"
                 </p>
 
-                {/* Customer Name & Service */}
-                <div className="flex items-center justify-between">
-                  <p className="text-white font-semibold text-sm">{review.name}</p>
+                {/* Customer Name, Location & Service */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <p className="text-white font-semibold text-sm">{review.name}</p>
+                    <p className="text-gray-400 text-xs">{review.location}</p>
+                  </div>
                   <p className="text-blue-300 text-xs">{review.service}</p>
                 </div>
               </div>
