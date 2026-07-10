@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
-import { useState } from 'react'
 
 interface Review {
   id: string
@@ -58,8 +57,6 @@ const reviews: Review[] = [
 ]
 
 export function Testimonials() {
-  const [isHovered, setIsHovered] = useState(false)
-
   // Duplicate reviews for seamless scrolling loop
   const duplicatedReviews = [...reviews, ...reviews]
 
@@ -83,19 +80,15 @@ export function Testimonials() {
         </motion.div>
 
         {/* Scrolling Reviews Container */}
-        <div
-          className="relative flex overflow-hidden"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="relative flex overflow-hidden">
           <motion.div
             className="flex gap-6 min-w-max"
             animate={{
-              x: isHovered ? 0 : [0, -50 * reviews.length],
+              x: [0, -50 * reviews.length],
             }}
             transition={{
-              duration: isHovered ? 0 : 60,
-              repeat: isHovered ? 0 : Infinity,
+              duration: 40,
+              repeat: Infinity,
               ease: 'linear',
             }}
           >
@@ -131,11 +124,6 @@ export function Testimonials() {
           {/* Gradient Fade on sides for visual polish */}
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent pointer-events-none z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent pointer-events-none z-10" />
-        </div>
-
-        {/* Hint Text */}
-        <div className="text-center mt-8">
-          <p className="text-gray-500 text-xs sm:text-sm">Hover to pause scrolling</p>
         </div>
       </div>
     </section>
