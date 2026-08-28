@@ -2,107 +2,13 @@
 
 import { motion } from 'framer-motion'
 
-interface Feature {
-  label: string
-  title: string
-  description: string
-}
-
-const features: Feature[] = [
-  {
-    label: 'STAGE-BASED',
-    title: 'Clear Packages',
-    description: 'Stage 1 and Stage 2 options for exterior, interior, or full in & out.',
-  },
-  {
-    label: 'THOROUGH',
-    title: 'Real Details',
-    description: 'We go after every surface we can safely reach, not just a wash and vacuum.',
-  },
-  {
-    label: 'SPORTY',
-    title: 'Performance Look',
-    description: 'Glossy, hydrophobic finish inspired by performance builds and track cars.',
-  },
-  {
-    label: 'MOBILE',
-    title: 'We Come To You',
-    description: 'Serving Richmond, Henrico, and nearby areas using your power and water.',
-  },
+const features = [
+  ['THOROUGH', 'Real Details', 'We clean every surface we can safely reach, not just the obvious areas.'],
+  ['MOBILE', 'We Come To You', 'Professional detailing at your driveway across Richmond and nearby areas.'],
+  ['CARE-DRIVEN', 'Quality Work', 'We take the time to leave your vehicle looking refreshed and properly finished.'],
+  ['SIMPLE', 'Easy Booking', 'Choose the service you need, share your details, and we will confirm your visit.'],
 ]
 
 export function WhyChooseUs() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
-
-  return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Why Drivers Choose <span className="text-blue-400">Quality Control</span>
-          </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
-            We run simple Stage 1 and Stage 2 packages so you always know exactly what you&apos;re getting. Both stages are full, thorough details. Stage 2 adds more decontamination and longer-lasting protection for a sharper, sportier finish.
-          </p>
-        </motion.div>
-
-        {/* Feature Cards Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              className="bg-white/5 border border-white/20 rounded-xl p-6 hover:border-blue-500/50 transition-colors duration-200"
-            >
-              {/* Label */}
-              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">
-                {feature.label}
-              </p>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-white mb-3">
-                {feature.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-300 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  )
+  return <section className="bg-black px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"><div className="mx-auto max-w-7xl"><div className="mb-12 text-center sm:mb-16"><h2 className="mb-6 text-4xl font-bold text-white sm:text-5xl">Why Drivers Choose <span className="text-blue-400">Quality Control</span></h2><p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg">Careful mobile detailing, clear service options, and a finish you can feel good about.</p></div><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">{features.map(([label, title, description], index) => <motion.div key={title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} viewport={{ once: true }} className="rounded-xl border border-white/20 bg-white/5 p-6"><p className="mb-3 text-xs font-bold uppercase tracking-widest text-blue-400">{label}</p><h3 className="mb-3 text-xl font-bold text-white">{title}</h3><p className="text-sm leading-relaxed text-gray-300">{description}</p></motion.div>)}</div></div></section>
 }
