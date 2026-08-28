@@ -8,7 +8,7 @@ const faqItems = [
   ['What services do you offer?', 'We offer Full Detail, Interior Detail, and Exterior Detail services, plus optional add-ons for specific needs.'],
   ['Where do you provide service?', 'We provide mobile detailing throughout Richmond, Henrico, Chesterfield, Hanover, Midlothian, and nearby communities.'],
   ['How long does a detail take?', 'Timing depends on the service, vehicle size, and condition. We will confirm an expected service window when you book.'],
-  ['Do I need to provide water and electricity?', 'Yes. Quality Control Auto Detailing currently requires access to an outdoor water source and a standard electrical outlet at the service location. Water is needed for exterior washing, rinsing, wheel cleaning, and other exterior services. Electricity is needed to operate detailing equipment such as the vacuum and other tools. Please make sure both are reasonably close to the vehicle and available throughout the appointment.'],
+  ['Do I need to provide water and power?', 'Yes. Please provide access to an outdoor water source and a nearby electrical outlet for our equipment.'],
   ['Can I add services to my booking?', 'Yes. Add-ons include pet hair removal, carpet or cloth seat shampoo, leather cleaning and conditioning, headlight restoration, engine bay cleaning, spray ceramic protection, and bug and tar removal.'],
   ['How do I book?', 'Choose the service you need, then complete the booking form or call or text us at (804) 300-6441.'],
 ]

@@ -20,7 +20,14 @@ export function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
-  const services = ['Full Detail', 'Interior Detail', 'Exterior Detail']
+  const services = [
+    'Stage 1 - Exterior Only',
+    'Stage 1 - Interior Only',
+    'Stage 1 - Full Detail',
+    'Stage 2 - Exterior Only',
+    'Stage 2 - Interior Only',
+    'Stage 2 - Full Detail',
+  ]
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
