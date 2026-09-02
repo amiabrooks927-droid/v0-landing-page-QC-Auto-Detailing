@@ -3,25 +3,5 @@
 import { motion } from 'framer-motion'
 
 export function About() {
-  return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-8">
-            About Quality Control Auto Detailing
-          </h2>
-          
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Quality Control Auto Detailing provides mobile auto detailing in Richmond and surrounding areas. We offer Stage 1 and Stage 2 full interior and exterior details, plus interior-only and exterior-only packages. Services include deep interior cleaning, exterior wash and decontamination, wheels and tires, and spray ceramic protection, with add-ons like pet hair and headlight restoration. We come to you with clear pricing and convenient scheduling.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  )
+  return <section id="about" className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"><div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2"><motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}><p className="mb-3 text-sm font-bold uppercase tracking-widest text-blue-600">About Quality Control</p><h2 className="mb-6 text-4xl font-bold text-black sm:text-5xl">Detailing that comes to you.</h2><p className="text-lg leading-relaxed text-gray-700">Quality Control Auto Detailing provides mobile interior and exterior detailing throughout Richmond and nearby communities. We bring careful, performance-minded work directly to your driveway.</p><p className="mt-4 text-lg leading-relaxed text-gray-700">Our approach combines thorough preparation, thoughtful product selection, and careful finishing work to refresh the cabin, restore exterior gloss, and protect the surfaces you use every day. Whether your vehicle needs a focused interior reset, a complete exterior clean, or the full detail experience, we take pride in delivering consistent, polished results with personal attention from start to finish.</p></motion.div><motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative overflow-hidden rounded-2xl"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9068.JPG-BiRu1CtMq8UcCHtvK9HFM1llGhTPHo.jpeg" alt="Clean luxury vehicle interior" className="h-full min-h-80 w-full object-cover" /></motion.div></div></section>
 }

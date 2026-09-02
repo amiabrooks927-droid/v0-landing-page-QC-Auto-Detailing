@@ -4,114 +4,21 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
-interface FAQItem {
-  question: string
-  answer: string
-}
-
-const faqItems: FAQItem[] = [
-  {
-    question: 'What is the difference between Stage 1 and Stage 2?',
-    answer: 'Stage 1 is a thorough wash and clean with spray ceramic protection. Stage 2 is more decontamination, longer-lasting protection, and extra attention to detail for a showroom finish. Stage 2 takes more time and delivers a higher level of finish.',
-  },
-  {
-    question: 'How long does a detail take?',
-    answer: 'Stage 1 details typically take 2-3 hours depending on vehicle size and condition. Stage 2 details take 4-6 hours. We work efficiently without rushing to ensure quality results.',
-  },
-  {
-    question: 'Do you offer interior-only or exterior-only services?',
-    answer: 'Yes, we offer both! You can choose a full detail (in & out) or just interior or just exterior. Prices vary depending on which service you select.',
-  },
-  {
-    question: 'What areas do you service?',
-    answer: 'We serve Richmond and the surrounding areas including Henrico, Chesterfield, Hanover, and beyond. Contact us to confirm if we service your location.',
-  },
-  {
-    question: 'Do you offer add-on services?',
-    answer: 'Yes! Add-ons include pet hair removal, headlight restoration, engine bay detailing, leather conditioning, and more. Ask about availability and pricing when booking.',
-  },
-  {
-    question: 'How far in advance should I book?',
-    answer: 'We recommend booking at least a few days in advance to secure your preferred date and time. During peak seasons, booking 1-2 weeks ahead is ideal.',
-  },
-  {
-    question: 'Do I need to provide water and power?',
-    answer: 'Yes, we do use customer water and power at this time. Please have access to an outdoor water source (hose-friendly outlet) and a nearby power outlet for our equipment. We\'ll work efficiently and safely with your utilities.',
-  },
+const faqItems = [
+  ['Do I need to provide water and electricity?', 'Yes. Quality Control Auto Detailing requires access to an outdoor water source and a standard electrical outlet at the service location. Water is needed for exterior washing, rinsing, wheel cleaning, and other exterior services. Electricity is needed to operate detailing equipment such as the vacuum and other tools. Please make sure both are reasonably close to the vehicle and available throughout the appointment.'],
+  ['What type of locations can you service?', 'We can detail vehicles at homes, driveways, workplaces, apartment communities, and other approved locations, as long as there is enough safe space to work around the vehicle and access to an outdoor water source and a standard electrical outlet. Customers are responsible for confirming that washing is permitted and securing any required property or management approval.'],
+  ['Which areas do you serve, and is there a travel fee?', 'Quality Control Auto Detailing serves Richmond, Virginia, and nearby surrounding communities. Appointments outside the standard service area may be available for an additional travel fee based on distance, travel time, and scheduling availability. Submit a quote request with your address or ZIP code to confirm availability.'],
+  ['How should I prepare my vehicle before my appointment?', 'Please remove personal belongings, valuables, documents, loose trash, and items from the trunk, console, glove box, door pockets, and under the seats. Let us know in advance about pet hair, spills, stains, odors, sand, construction dust, mold, or unusual conditions so we can recommend add-ons and provide an accurate quote.'],
+  ['How long does a detail take?', 'Service time depends on vehicle size, condition, selected service, and add-ons. Heavy buildup, embedded pet hair, stains, or strong odors may require additional time. We provide an estimated service window based on the information and photos you provide.'],
+  ['Do I need to be present during the service?', 'No. You may be away as long as we have access to the vehicle, water, electricity, and a safe approved work area. We recommend being available at the beginning for a walk-around and remaining reachable by phone, especially for first-time appointments.'],
+  ['What happens if it rains or the weather is unsafe?', 'Heavy rain, lightning, high winds, freezing temperatures, unsafe surfaces, or other unsuitable conditions may require postponement or rescheduling. We will contact you as early as possible. Interior-only service may be possible in a safe covered area with enough room, water, and electricity.'],
+  ['Can you remove scratches, swirl marks, or paint defects?', 'Standard detailing cleans and protects paint but does not include paint correction, scratch removal, dent repair, rock-chip repair, clear-coat repair, or permanent removal of deep defects. Include clear photos with your quote request so we can discuss the condition and appropriate service.'],
+  ['Do you offer ceramic coating?', 'We include ceramic spray protection with exterior and full-detail services and offer a Ceramic Sealant add-on for longer-lasting protection, gloss, and water beading. These are not the same as a professionally installed multi-year ceramic coating, which requires additional preparation, application, curing, and evaluation.'],
+  ['How do I request a quote or book an appointment?', 'Fill out the request form or contact Quality Control Auto Detailing directly. Include your vehicle year, make, model, type, service location, requested service, add-ons, and concerns. Photos of the interior, exterior, wheels, and problem areas help us confirm availability, requirements, recommended services, estimated time, and your custom quote.'],
+  ['Do you handle biohazard, bodily-fluid, or hazardous-waste cleanup?', 'No. We do not provide biohazard, trauma-scene, bodily-fluid, hazardous-waste, needle, mold-remediation, or potentially infectious-material cleanup. These situations require specialized training, protective equipment, containment, and disposal procedures. Please contact a qualified biohazard or trauma-cleanup professional before requesting standard detailing.'],
 ]
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
-  return (
-    <section id="faq" className="py-16 sm:py-20 lg:py-24 bg-black">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-gray-300 text-base sm:text-lg">
-            Have a question? Check out our FAQs or contact us directly.
-          </p>
-        </motion.div>
-
-        {/* FAQ Items */}
-        <div className="space-y-4">
-          {faqItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              viewport={{ once: true }}
-            >
-              <button
-                onClick={() => toggleAccordion(index)}
-                className="w-full bg-white/10 hover:bg-white/20 transition-colors rounded-lg p-6 text-left"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-lg sm:text-xl font-semibold text-white flex-grow">
-                    {item.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-shrink-0"
-                  >
-                    <ChevronDown className="w-6 h-6 text-blue-400" />
-                  </motion.div>
-                </div>
-              </button>
-
-              {/* Answer */}
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{
-                  height: openIndex === index ? 'auto' : 0,
-                  opacity: openIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 py-4 bg-white/5 text-gray-300 text-base leading-relaxed border-t border-white/10">
-                  {item.answer}
-                </div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
+  return <section id="faq" className="bg-black px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"><div className="mx-auto max-w-4xl"><div className="mb-12 text-center"><h2 className="mb-5 text-4xl font-bold text-white sm:text-5xl">Frequently Asked Questions</h2><p className="text-gray-300">Everything you need to know before booking.</p></div><div className="space-y-4">{faqItems.map(([question, answer], index) => <div key={question}><button aria-expanded={openIndex === index} onClick={() => setOpenIndex(openIndex === index ? null : index)} className="flex w-full items-center justify-between gap-4 rounded-lg bg-white/10 p-6 text-left text-white transition-colors hover:bg-white/20"><span className="font-semibold">{question}</span><ChevronDown className={`h-5 w-5 shrink-0 text-blue-400 transition-transform ${openIndex === index ? 'rotate-180' : ''}`} /></button><motion.div initial={false} animate={{ height: openIndex === index ? 'auto' : 0, opacity: openIndex === index ? 1 : 0 }} className="overflow-hidden"><p className="border-t border-white/10 bg-white/5 px-6 py-4 leading-relaxed text-gray-300">{answer}</p></motion.div></div>)}</div></div></section>
 }
