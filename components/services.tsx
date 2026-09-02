@@ -21,8 +21,8 @@ export function Services() {
         </motion.div>
         <div className="grid gap-6 lg:grid-cols-3">
           {services.map((service, index) => (
-            <motion.article key={service.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} viewport={{ once: true }} className="flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/5">
-              <div className="relative h-52"><img src={service.image} alt={service.title} className="h-full w-full object-cover" /></div>
+            <motion.article key={service.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} viewport={{ once: true }} className={`relative flex flex-col overflow-visible rounded-2xl border bg-white/5 transition-transform ${service.title === 'Full Detail' ? 'scale-[1.02] border-blue-400/80 shadow-[0_0_24px_rgba(59,130,246,0.3)] animate-pulse' : 'border-white/20'}`}>
+              {service.title === 'Full Detail' && <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 rounded-full border border-blue-300 bg-blue-500 px-4 py-1 text-xs font-bold tracking-widest text-white shadow-[0_0_16px_rgba(59,130,246,0.55)]">BEST VALUE</div>}<div className="relative h-52 overflow-hidden rounded-t-2xl"><img src={service.image} alt={service.title} className="h-full w-full object-cover" /></div>
               <div className="flex flex-1 flex-col p-6"><h3 className="mb-3 text-2xl font-bold text-white">{service.title}</h3><p className="mb-6 leading-relaxed text-gray-300">{service.description}</p><ul className="space-y-3">{service.items.map((item) => <li key={item} className="flex gap-3 text-sm text-gray-200"><Check className="h-5 w-5 shrink-0 text-blue-400" />{item}</li>)}</ul><a href="#contact" className="mt-8 block w-full rounded-lg bg-blue-500 px-5 py-3 text-center font-bold text-white transition-colors hover:bg-blue-400">Book</a></div>
             </motion.article>
           ))}
