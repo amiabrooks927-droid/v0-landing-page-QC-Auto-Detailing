@@ -9,7 +9,7 @@ const services = [
   { title: 'Exterior Only', description: 'A complete exterior service for a cleaner, glossier, better-protected finish.', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/51c29fd95a956697e27fae65ea0ee02d-4Dpk1DHHEIS498SfZZLRZnWii9Ulhr.jpg', items: ['Contact Wash', 'Iron Decontamination', 'Wheel and Tire Cleaning', 'Door Jambs + Gas Cap', 'Ceramic Spray Wax', 'Exterior Glass Cleaning and Rain Repellent'] },
 ]
 
-const flagshipBadge = 'Most Popular'
+const flagshipBadge: string = 'Most Popular'
 
 const addOns = ['Ceramic Sealant', 'Carpet & Cloth Shampoo', 'Pet Hair Removal', 'Trim Restoration', 'Odor Removal', 'Engine Bay Cleaning & Restoration', 'Headlight Restoration', 'Clay Bar Treatment', 'Water Spot Removal', 'Interior Steam Cleaning', 'Convertible Top Cleaning', 'Rim Polishing', 'Child Car Seat Cleaning']
 
