@@ -165,34 +165,34 @@ Use this checklist to track progress across future sessions and agents:
 
 ```markdown
 ### Phase 1: Foundation & Typography
-- [ ] 1.1 Update `app/layout.tsx` to import and configure the `Inter` font from `next/font/google`.
-- [ ] 1.2 Update `app/globals.css` with dark theme variables, electric blue tokens, and smooth scroll behavior.
-- [ ] 1.3 Create `lib/constants.ts` with Calendly URL, pricing matrix, add-ons list, and FAQs.
+- [x] 1.1 Update `app/layout.tsx` to import and configure the `Inter` font from `next/font/google`.
+- [x] 1.2 Update `app/globals.css` with dark theme variables, electric blue tokens, and smooth scroll behavior.
+- [x] 1.3 Create `lib/constants.ts` with Calendly URL, pricing matrix, add-ons list, and FAQs.
 
 ### Phase 2: Navigation & Hero
-- [ ] 2.1 Update `components/navbar.tsx` with sticky scroll detection, blur effect, and mobile drawer.
-- [ ] 2.2 Configure all "Book Now" buttons in navbar to open Calendly in a new tab.
-- [ ] 2.3 Refactor `components/hero.tsx` with full-viewport height, badge, bold headline, and dual CTAs.
+- [x] 2.1 Update `components/navbar.tsx` with sticky scroll detection, blur effect, and mobile drawer.
+- [x] 2.2 Configure all "Book Now" buttons in navbar to open Calendly in a new tab.
+- [x] 2.3 Refactor `components/hero.tsx` with full-viewport height, badge, bold headline, and dual CTAs.
 
 ### Phase 3: Services & Pricing
-- [ ] 3.1 Update `components/services.tsx` with the 3 package cards (Full Detail "Most Popular" badge).
-- [ ] 3.2 Build the 13 Add-On Services pill grid with electric blue hover border interactions.
-- [ ] 3.3 Create `components/quote-calculator.tsx` with 2-step interactive pricing engine, disclaimer, and CTA.
+- [x] 3.1 Update `components/services.tsx` with the 3 package cards (Full Detail "Most Popular" badge).
+- [x] 3.2 Build the 13 Add-On Services pill grid with electric blue hover border interactions.
+- [x] 3.3 Create `components/quote-calculator.tsx` with 2-step interactive pricing engine, disclaimer, and CTA.
 
 ### Phase 4: Service Area & About
-- [ ] 4.1 Implement `components/service-area.tsx` glowing banner with map pin, coverage pills, and travel-fee note.
-- [ ] 4.2 Convert `components/about.tsx` to dark luxury styling with two-column layout and luxury interior image.
-- [ ] 4.3 Integrate the 2x2 grid of the 4 key pillars (Thorough, Mobile, Care-Driven, Simple).
+- [x] 4.1 Implement `components/service-area.tsx` glowing banner with map pin, coverage pills, and travel-fee note.
+- [x] 4.2 Convert `components/about.tsx` to dark luxury styling with two-column layout and luxury interior image.
+- [x] 4.3 Integrate the 2x2 grid of the 4 key pillars (Thorough, Mobile, Care-Driven, Simple).
 
 ### Phase 5: FAQ & Booking
-- [ ] 5.1 Refactor `components/faq.tsx` to strict single-open accordion with rotating chevrons and 10 questions.
-- [ ] 5.2 Build two-column contact section in `components/contact.tsx` with sidebar (phone, email, Calendly, water/outlet alert).
-- [ ] 5.3 Implement client-side validation and inline confirmation on form submission.
+- [x] 5.1 Refactor `components/faq.tsx` to strict single-open accordion with rotating chevrons and 10 questions.
+- [x] 5.2 Build two-column contact section in `components/contact.tsx` with sidebar (phone, email, Calendly, water/outlet alert).
+- [x] 5.3 Implement client-side validation and inline confirmation on form submission.
 
 ### Phase 6: Footer & Assembly
-- [ ] 6.1 Update `components/footer.tsx` with copyright, tagline, and repeated nav links.
-- [ ] 6.2 Assemble all components in `app/page.tsx` in the exact specified order.
-- [ ] 6.3 Verify all booking buttons trigger Calendly in a new tab (`target="_blank" rel="noopener noreferrer"`).
+- [x] 6.1 Update `components/footer.tsx` with copyright, tagline, and repeated nav links.
+- [x] 6.2 Assemble all components in `app/page.tsx` in the exact specified order.
+- [x] 6.3 Verify all booking buttons trigger Calendly in a new tab (`target="_blank" rel="noopener noreferrer"`).
 
 ### Phase 7: Verification & Testing
 - [ ] 7.1 Verify build passes with zero TypeScript/lint errors (`npm run build`).

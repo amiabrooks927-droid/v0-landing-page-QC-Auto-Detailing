@@ -1,37 +1,160 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, MapPin } from 'lucide-react'
-
-const services = [
-  { title: 'Full Detail', description: 'A complete interior and exterior reset for every surface of your vehicle.', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/81e4f22d507b3575386f46807e703c3c-OLnZ7kZUbZ98SXdOAsqlTLihFXr1jP.jpg', items: ['Full Vacuum', 'Interior Scrub and Wipe Down', 'UV Protectant on Vinyl, Rubber, Plastic', 'Leather Cleaning/Conditioning', 'Contact Wash', 'Iron Decontamination', 'Wheel and Tire Cleaning', 'Door Jambs + Gas Cap', 'Ceramic Spray Wax', 'Exterior Glass Cleaning and Rain Repellent'] },
-  { title: 'Interior Only', description: 'A focused interior service that refreshes and protects your cabin from top to bottom.', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/adecbf1557ef5ae55633abd1c63ab271-nW6vNIBgSDhvncTMmHJbWtHEDv7FRc.jpg', items: ['Full Vacuum', 'Interior Scrub & Wipe Down', 'UV Protectant on Vinyl, Rubber, Plastic', 'Leather Cleaning & Conditioning', 'Interior Glass Cleaning'] },
-  { title: 'Exterior Only', description: 'A complete exterior service for a cleaner, glossier, better-protected finish.', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/51c29fd95a956697e27fae65ea0ee02d-4Dpk1DHHEIS498SfZZLRZnWii9Ulhr.jpg', items: ['Contact Wash', 'Iron Decontamination', 'Wheel and Tire Cleaning', 'Door Jambs + Gas Cap', 'Ceramic Spray Wax', 'Exterior Glass Cleaning and Rain Repellent'] },
-]
-
-const addOns = ['Ceramic Sealant', 'Carpet & Cloth Shampoo', 'Pet Hair Removal', 'Trim Restoration', 'Odor Removal', 'Engine Bay Cleaning & Restoration', 'Headlight Restoration', 'Clay Bar Treatment', 'Water Spot Removal', 'Interior Steam Cleaning', 'Convertible Top Cleaning', 'Rim Polishing', 'Child Car Seat Cleaning']
+import { Check, Sparkles, Plus } from 'lucide-react'
+import { PACKAGES, ADD_ONS } from '@/lib/constants'
 
 export function Services() {
   return (
-    <section id="services" className="bg-black px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-7xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center sm:mb-16">
-          <h2 className="mb-6 text-4xl font-bold text-white sm:text-5xl">Services</h2>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">Straightforward mobile detailing for a cleaner, sharper vehicle without the trip to a shop.</p>
+    <section id="services" className="bg-black py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/10 blur-[130px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 sm:mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Curated Packages</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+            Mobile Detailing Services
+          </h2>
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Every package delivers comprehensive care with paint-safe techniques and commercial-grade formulas directly to your driveway.
+          </p>
         </motion.div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.article key={service.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} viewport={{ once: true }} className={`relative flex flex-col overflow-visible rounded-2xl border bg-white/5 ${service.title === 'Full Detail' ? 'border-blue-400 ring-2 ring-blue-400/70 shadow-lg shadow-blue-500/20' : 'border-white/20'}`}>
-              {service.title === 'Full Detail' && <span className="absolute right-5 top-0 z-10 -translate-y-1/2 rounded-full border border-blue-300/50 bg-blue-500 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">Most Popular</span>}<div className="relative h-52 overflow-hidden rounded-t-2xl"><img src={service.image} alt={service.title} className="h-full w-full object-cover" /></div>
-              <div className="flex flex-1 flex-col p-6"><h3 className="mb-3 text-2xl font-bold text-white">{service.title}</h3><p className="mb-6 leading-relaxed text-gray-300">{service.description}</p><ul className="space-y-3">{service.items.map((item) => <li key={item} className="flex gap-3 text-sm text-gray-200"><Check className="h-5 w-5 shrink-0 text-blue-400" />{item}</li>)}</ul><a href="#contact" className="mt-8 block w-full rounded-lg bg-blue-500 px-5 py-3 text-center font-bold text-white transition-colors hover:bg-blue-400">Book</a></div>
-            </motion.article>
-          ))}
+
+        {/* 3 Package Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-20">
+          {PACKAGES.map((pkg, index) => {
+            const isPopular = pkg.popular
+
+            return (
+              <motion.article
+                key={pkg.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className={`relative flex flex-col rounded-2xl transition-all duration-300 ${isPopular
+                    ? 'bg-[#10131d] border-2 border-blue-500 shadow-[0_0_35px_rgba(0,82,255,0.28)]'
+                    : 'bg-[#0e0e11] border border-white/10 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(0,82,255,0.15)]'
+                  }`}
+              >
+                {/* Most Popular Badge */}
+                {isPopular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
+                    <span className="px-4 py-1 rounded-full bg-blue-600 border border-blue-400/50 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-600/50 inline-flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-white" />
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+
+                {/* Card Image */}
+                <div className="relative h-52 w-full overflow-hidden rounded-t-2xl">
+                  <img
+                    src={pkg.image}
+                    alt={pkg.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e11] via-transparent to-transparent" />
+                </div>
+
+                {/* Card Content */}
+                <div className="p-6 sm:p-7 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <span className="text-xs font-semibold text-blue-400 uppercase tracking-wide">
+                      {pkg.subtitle}
+                    </span>
+                    <h3 className="text-2xl font-bold text-white mt-1">{pkg.title}</h3>
+                    <p className="text-gray-300 text-sm mt-2 leading-relaxed">{pkg.description}</p>
+                  </div>
+
+                  {/* Feature Checkmarks */}
+                  <div className="space-y-3 mb-6 flex-grow">
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                      Includes:
+                    </p>
+                    <ul className="space-y-2.5">
+                      {pkg.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-200">
+                          <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Book Now Button */}
+                  <div className="pt-4 border-t border-white/10 mt-auto">
+                    <a
+                      href="https://app.squareup.com/appointments/book/3e2nbye6rpamop/LE9JRT66KSQPK/start"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm text-center flex items-center justify-center transition-all duration-200 ${isPopular
+                          ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/40 hover:shadow-blue-500/60'
+                          : 'bg-white/8 hover:bg-blue-600 text-white border border-white/15 hover:border-blue-600'
+                        }`}
+                      id={`book-service-${pkg.id}`}
+                    >
+                      Book Now
+                    </a>
+                  </div>
+                </div>
+              </motion.article>
+            )
+          })}
         </div>
-        <div className="mt-10 grid gap-8 rounded-2xl border border-blue-500/40 bg-blue-950/20 p-6 sm:p-8 lg:grid-cols-[1fr_1.3fr] lg:items-center">
-          <div><p className="mb-2 text-sm font-bold uppercase tracking-widest text-blue-300">Optional upgrades</p><h3 className="mb-3 text-3xl font-bold text-white">Add-On Services</h3><p className="leading-relaxed text-gray-300">Customize your detail with focused services for the areas that need extra attention.</p></div>
-          <div className="grid gap-3 sm:grid-cols-2">{addOns.map((item) => <div key={item} className="flex items-center gap-3 rounded-lg bg-white/10 px-4 py-3 text-sm text-gray-200"><Check className="h-4 w-4 text-blue-400" />{item}</div>)}</div>
-        </div>
-        <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-white/15 bg-white/5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"><div><div className="mb-2 flex items-center gap-2 text-blue-300"><MapPin className="h-5 w-5" /><span className="font-semibold">Service Area</span></div><h3 className="text-2xl font-bold text-white">Richmond and surrounding areas</h3><p className="mt-2 text-gray-300">Serving Richmond, Henrico, Chesterfield, Hanover, Midlothian, and nearby communities.</p></div><div className="flex h-20 w-full items-center justify-center rounded-xl border border-blue-400/30 bg-blue-500/10 text-sm text-blue-200 sm:w-56">Mobile service area</div></div>
+
+        {/* 13 Add-On Services Pill Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl border border-white/10 bg-[#0e0e11] p-6 sm:p-10 relative overflow-hidden"
+        >
+          {/* Subtle gradient accent */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 blur-[100px] pointer-events-none" />
+
+          <div className="max-w-3xl mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-2">
+              <Plus className="w-3.5 h-3.5" />
+              <span>Custom Upgrades</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              13 Specialized Add-On Services
+            </h3>
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+              Target specialized problem areas such as embedded pet hair, cloth staining, dull trim, or engine grime.
+              Add any of these to your package during booking or inquiry.
+            </p>
+          </div>
+
+          {/* Pill Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {ADD_ONS.map((addOn) => (
+              <div
+                key={addOn}
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-500/80 hover:bg-blue-500/[0.06] hover:shadow-[0_0_15px_rgba(0,82,255,0.2)] transition-all duration-200 cursor-default"
+              >
+                <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-125 transition-transform shrink-0" />
+                <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors">
+                  {addOn}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

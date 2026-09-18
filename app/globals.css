@@ -6,53 +6,48 @@
 
 :root {
   /* Dark Luxury Automotive Theme */
-  --background: 0 0% 5%;
+  --background: 0 0% 4%;
   --foreground: 0 0% 98%;
-  --card: 0 0% 12%;
+  --card: 0 0% 8%;
   --card-foreground: 0 0% 98%;
-  --popover: 0 0% 12%;
+  --popover: 0 0% 8%;
   --popover-foreground: 0 0% 98%;
-  --primary: 239 100% 50%;
+  --primary: 221 100% 50%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 20%;
+  --secondary: 0 0% 16%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 30%;
+  --muted: 0 0% 20%;
   --muted-foreground: 0 0% 70%;
-  --accent: 239 100% 50%;
+  --accent: 221 100% 50%;
   --accent-foreground: 0 0% 98%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 20%;
-  --input: 0 0% 15%;
-  --ring: 239 100% 50%;
-  --chart-1: 239 100% 50%;
+  --border: 0 0% 18%;
+  --input: 0 0% 14%;
+  --ring: 221 100% 50%;
+  --chart-1: 221 100% 50%;
   --chart-2: 200 100% 50%;
   --chart-3: 160 100% 45%;
   --chart-4: 280 100% 50%;
   --chart-5: 320 100% 50%;
-  --radius: 1rem;
-  --sidebar: 0 0% 12%;
+  --radius: 0.875rem;
+  --sidebar: 0 0% 8%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-primary: 239 100% 50%;
+  --sidebar-primary: 221 100% 50%;
   --sidebar-primary-foreground: 0 0% 5%;
-  --sidebar-accent: 239 100% 50%;
+  --sidebar-accent: 221 100% 50%;
   --sidebar-accent-foreground: 0 0% 5%;
-  --sidebar-border: 0 0% 20%;
-  --sidebar-ring: 239 100% 50%;
-  /* Custom Brand Colors */
-  --qc-blue: 239 100% 50%;
-  --qc-blue-dark: 239 85% 35%;
-  --qc-blue-light: 239 100% 65%;
-  --qc-black: 0 0% 5%;
-  --qc-white: 0 0% 98%;
-  --qc-gray-dark: 0 0% 15%;
-  --qc-gray-light: 0 0% 70%;
-  --qc-glow: 239 100% 50%;
+  --sidebar-border: 0 0% 18%;
+  --sidebar-ring: 221 100% 50%;
+
+  /* Custom Electric Blue & Dark Brand Colors */
+  --electric-blue: #0052FF;
+  --electric-blue-glow: rgba(0, 82, 255, 0.45);
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -72,30 +67,46 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-foreground antialiased;
+    overflow-x: hidden;
   }
+}
+
+/* Custom Electric Blue Glow Utilities */
+.glow-blue {
+  box-shadow: 0 0 25px -4px rgba(0, 82, 255, 0.45);
+}
+
+.glow-blue-lg {
+  box-shadow: 0 0 45px -5px rgba(0, 82, 255, 0.55);
+}
+
+.glow-blue-sm {
+  box-shadow: 0 0 16px -2px rgba(0, 82, 255, 0.35);
+}
+
+.border-glow-blue {
+  border-color: rgba(0, 82, 255, 0.7);
+  box-shadow: 0 0 20px rgba(0, 82, 255, 0.3);
+}
+
+.bg-glass {
+  background: rgba(18, 18, 22, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
