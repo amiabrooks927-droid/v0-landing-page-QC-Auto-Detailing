@@ -93,6 +93,12 @@
   body {
     @apply bg-black text-foreground antialiased;
   }
+
+  @media (max-width: 639px) {
+    section[id] {
+      padding-block: 3rem;
+    }
+  }
 }
 
 /* Custom Electric Blue Glow Utilities */

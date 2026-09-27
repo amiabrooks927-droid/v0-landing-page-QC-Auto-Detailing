@@ -10,7 +10,7 @@ interface SectionDividerProps {
 export function SectionDivider({ glow = true, variant = 'angled' }: SectionDividerProps) {
   if (variant === 'angled') {
     return (
-      <div className="relative w-full h-8 overflow-hidden pointer-events-none bg-transparent">
+      <div className="relative w-full h-4 sm:h-8 overflow-hidden pointer-events-none bg-transparent">
         {/* Subtle angled SVG divider */}
         <svg
           viewBox="0 0 1200 40"
