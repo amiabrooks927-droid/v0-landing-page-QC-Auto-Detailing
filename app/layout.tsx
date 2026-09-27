@@ -14,30 +14,12 @@ export const metadata: Metadata = {
   title: 'Quality Control Auto Detailing | Premium Mobile Auto Detail Service in Richmond, VA',
   description:
     'Mobile auto detailing in Richmond, VA. Performance-level interior and exterior detailing delivered directly to your driveway. View pricing and book online today.',
-  generator: 'v0.app',
   metadataBase: new URL('https://qualitycontrolautodetailing.com'),
   openGraph: {
     title: 'Quality Control Auto Detailing | Mobile Auto Detailing in Richmond, VA',
     description:
       'Performance-level mobile auto detailing delivered directly to your driveway. Transparent pricing and easy online booking.',
     type: 'website',
-  },
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
   },
 }
 
