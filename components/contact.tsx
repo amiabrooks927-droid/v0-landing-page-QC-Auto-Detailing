@@ -174,14 +174,14 @@ export function Contact() {
 
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-500/60 hover:bg-blue-500/10 transition-all group"
+                className="flex min-w-0 items-center gap-4 p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-500/60 hover:bg-blue-500/10 transition-all group"
               >
                 <div className="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-gray-400">Email Inquiry</p>
-                  <p className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">
+                  <p className="break-all text-xs font-bold text-white group-hover:text-blue-300 transition-colors">
                     {CONTACT_INFO.email}
                   </p>
                 </div>
