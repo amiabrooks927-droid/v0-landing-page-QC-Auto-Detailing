@@ -4,7 +4,11 @@ import Image from 'next/image'
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react'
 import { CONTACT_INFO } from '@/lib/constants'
 
-export function Footer() {
+interface FooterProps {
+  onEstimateClick?: () => void
+}
+
+export function Footer({ onEstimateClick }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -58,7 +62,13 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white hover:text-blue-300 transition-colors py-1 inline-block"
+                    onClick={(event) => {
+                      if (link.label === 'Service Estimate' && window.innerWidth < 768 && onEstimateClick) {
+                        event.preventDefault()
+                        onEstimateClick()
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white hover:text-blue-300 transition-colors py-1 inline-flex items-center py-1"
                   >
                     {link.label}
                   </a>

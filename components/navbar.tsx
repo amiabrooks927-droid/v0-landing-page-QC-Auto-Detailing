@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 interface NavbarProps {
   onBookingClick?: () => void
+  onEstimateClick?: () => void
 }
 
 export function Navbar({ onBookingClick }: NavbarProps) {
@@ -48,6 +49,14 @@ export function Navbar({ onBookingClick }: NavbarProps) {
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false)
+  }
+
+  const handleEstimateClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.innerWidth < 768 && onEstimateClick) {
+      event.preventDefault()
+      handleLinkClick()
+      onEstimateClick()
+    }
   }
 
   return (
@@ -136,8 +145,8 @@ export function Navbar({ onBookingClick }: NavbarProps) {
                     key={link.label}
                     href={link.href}
                     {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="px-4 py-3 rounded-lg text-base font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-all flex items-center justify-between"
-                    onClick={handleLinkClick}
+                    className="flex min-w-0 w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-gray-200 transition-all hover:bg-white/10 hover:text-white"
+                    onClick={link.label === 'Service Estimate' ? handleEstimateClick : handleLinkClick}
                   >
                     <span>{link.label}</span>
                     <span className="text-blue-400 text-sm">→</span>

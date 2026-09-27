@@ -12,16 +12,20 @@ import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
 import { FloatingCTA } from '@/components/floating-cta'
 import { SectionDivider } from '@/components/section-divider'
+import { MobileEstimateModal } from '@/components/mobile-estimate-modal'
+import { useState } from 'react'
 
 export default function Home() {
+  const [isEstimateOpen, setIsEstimateOpen] = useState(false)
+
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative">
-      <Navbar />
+    <main className="min-h-screen min-w-0 bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative">
+      <Navbar onEstimateClick={() => setIsEstimateOpen(true)} />
       <Hero />
       <SectionDivider />
       <Services />
       <SectionDivider />
-      <QuoteCalculator />
+      <QuoteCalculator onEstimateClick={() => setIsEstimateOpen(true)} />
       <SectionDivider />
       <Gallery />
       <SectionDivider />
@@ -30,8 +34,9 @@ export default function Home() {
       <About />
       <FAQ />
       <Contact />
-      <Footer />
+      <Footer onEstimateClick={() => setIsEstimateOpen(true)} />
       <FloatingCTA />
+      <MobileEstimateModal open={isEstimateOpen} onClose={() => setIsEstimateOpen(false)} />
     </main>
   )
 }

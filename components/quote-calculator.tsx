@@ -41,7 +41,11 @@ const VEHICLE_OPTIONS: { id: VehicleType; label: string; examples: string }[] = 
   },
 ]
 
-export function QuoteCalculator() {
+interface QuoteCalculatorProps {
+  onEstimateClick?: () => void
+}
+
+export function QuoteCalculator({ onEstimateClick }: QuoteCalculatorProps) {
   const [selectedService, setSelectedService] = useState<ServiceType>('full-detail')
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('sedan')
   const [isCalculating, setIsCalculating] = useState(false)
@@ -70,6 +74,7 @@ export function QuoteCalculator() {
   return (
     <section id="quote-calculator" className="bg-[#070709] py-20 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-5xl mx-auto relative z-10">
+        <button type="button" onClick={onEstimateClick} className="mb-8 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-500 md:hidden">View Service Estimate</button>
         {/* Section Header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">

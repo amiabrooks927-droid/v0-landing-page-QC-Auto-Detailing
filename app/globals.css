@@ -78,8 +78,11 @@
     scroll-behavior: smooth;
     color-scheme: dark;
   }
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
   body {
     @apply bg-black text-foreground antialiased;
