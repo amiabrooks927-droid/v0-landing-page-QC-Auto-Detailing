@@ -19,7 +19,7 @@ export default function Home() {
   const [isEstimateOpen, setIsEstimateOpen] = useState(false)
 
   return (
-    <main className="min-h-screen min-w-0 bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative">
+    <main className="min-h-screen min-w-0 max-w-full overflow-x-clip bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative">
       <Navbar onEstimateClick={() => setIsEstimateOpen(true)} />
       <Hero />
       <SectionDivider />
