@@ -15,7 +15,7 @@ import { SectionDivider } from '@/components/section-divider'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative">
+    <main className="min-h-screen bg-black text-white selection:bg-blue-600 selection:text-white flex flex-col relative w-full max-w-full overflow-x-clip">
       <Navbar />
       <Hero />
       <SectionDivider />

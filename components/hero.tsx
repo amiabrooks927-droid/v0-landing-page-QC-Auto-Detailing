@@ -99,7 +99,7 @@ export function Hero({ onBookingClick }: HeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs sm:text-sm text-gray-400 max-w-2xl w-full"
+          className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 text-xs sm:text-sm text-gray-400 max-w-2xl w-full"
         >
           <div className="flex items-center justify-center gap-2">
             <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />

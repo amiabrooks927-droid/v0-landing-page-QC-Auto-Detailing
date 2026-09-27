@@ -77,13 +77,17 @@
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
+    overflow-x: clip;
+    max-width: 100%;
   }
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-black text-foreground antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
+    width: 100%;
   }
 }
 

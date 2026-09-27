@@ -17,6 +17,7 @@ export function Footer() {
     { label: 'About Us', href: '#about' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Request a Quote', href: '#contact' },
+    { label: 'Policies', href: '/policies' },
   ]
 
   return (

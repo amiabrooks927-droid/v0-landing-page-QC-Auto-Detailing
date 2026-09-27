@@ -15,15 +15,15 @@ export function About() {
   return (
     <section id="about" className="bg-[#08080a] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Subtle background ambient light */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-600/10 blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 max-w-full h-96 bg-blue-600/10 blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Top: Two-column layout with story and luxury interior photo */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
           {/* Left: Business description & story (7 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 space-y-6"
@@ -44,13 +44,13 @@ export function About() {
               Our approach combines thorough preparation, thoughtful product selection, and careful finishing techniques to refresh your cabin, restore exterior gloss, and protect high-wear surfaces. Whether your vehicle needs a focused interior reset, a complete exterior wash with ceramic sealant, or the full detail experience, we take pride in delivering showroom-level satisfaction with personal attention.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-6 text-sm text-gray-300">
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm text-gray-300">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>Locally Owned & Operated</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>Zero Compromises on Quality</span>
               </div>
             </div>
@@ -58,10 +58,10 @@ export function About() {
 
           {/* Right: Luxury interior photo (5 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5 relative"
           >
             <div className="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl group">
@@ -72,7 +72,7 @@ export function About() {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10">
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/85 border border-white/10">
                 <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide">
                   Attention to Detail
                 </p>
@@ -106,10 +106,10 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="rounded-2xl border border-white/10 bg-[#0e0e12] p-7 sm:p-8 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(0,82,255,0.15)] transition-all duration-300 group"
+                  className="rounded-2xl border border-white/10 bg-[#0e0e12] p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(0,82,255,0.15)] transition-[border-color,box-shadow] duration-300 transform-gpu group"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>

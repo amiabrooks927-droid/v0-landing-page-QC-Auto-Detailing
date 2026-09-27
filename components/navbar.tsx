@@ -44,6 +44,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
     { label: 'FAQ', href: '#faq' },
     { label: 'Book', href: 'https://app.squareup.com/appointments/book/3e2nbye6rpamop/LE9JRT66KSQPK/start', external: true },
     { label: 'Contact', href: '#contact' },
+    { label: 'Policies', href: '/policies' },
   ]
 
   const handleLinkClick = () => {
@@ -78,7 +79,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.label}

@@ -27,6 +27,7 @@ interface FormData {
   service: string
   dateTime: string
   notes: string
+  inspectionAcknowledged: boolean
 }
 
 interface FormErrors {
@@ -36,6 +37,7 @@ interface FormErrors {
   area?: string
   vehicle?: string
   service?: string
+  inspectionAcknowledged?: string
 }
 
 export function Contact() {
@@ -48,11 +50,13 @@ export function Contact() {
     service: 'Full Detail',
     dateTime: '',
     notes: '',
+    inspectionAcknowledged: false,
   })
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {}
@@ -85,6 +89,11 @@ export function Contact() {
       newErrors.service = 'Please select a requested service'
     }
 
+    if (!formData.inspectionAcknowledged) {
+      newErrors.inspectionAcknowledged =
+        'Please acknowledge the pre-service inspection policy to submit a quote request'
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -92,12 +101,16 @@ export function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type } = e.target
+    const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    setFormData((prev) => ({ ...prev, [name]: val }))
 
-    // Clear individual error on change
+    // Clear individual error on change and reset submit error
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
+    }
+    if (submitError) {
+      setSubmitError(null)
     }
   }
 
@@ -109,12 +122,57 @@ export function Contact() {
     }
 
     setIsSubmitting(true)
+    setSubmitError(null)
 
-    // Simulate reliable dispatch
-    await new Promise((resolve) => setTimeout(resolve, 900))
+    try {
+      const response = await fetch('https://formspree.io/f/xrpbeqlv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          area: formData.area,
+          vehicle: formData.vehicle,
+          service: formData.service,
+          dateTime: formData.dateTime,
+          notes: formData.notes,
+          inspectionAcknowledged: formData.inspectionAcknowledged ? 'Yes' : 'No',
+          _subject: 'New Quote Request — Quality Control Auto Detailing',
+        }),
+      })
 
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
+      if (response.ok) {
+        setSubmitSuccess(true)
+        // Reset the form only after Formspree confirms success
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          area: '',
+          vehicle: '',
+          service: 'Full Detail',
+          dateTime: '',
+          notes: '',
+          inspectionAcknowledged: false,
+        })
+        setErrors({})
+        setSubmitError(null)
+      } else {
+        setSubmitError(
+          'We could not send your request right now. Please try again, call us, or text us directly.'
+        )
+      }
+    } catch {
+      setSubmitError(
+        'We could not send your request right now. Please try again, call us, or text us directly.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleResetForm = () => {
@@ -127,8 +185,10 @@ export function Contact() {
       service: 'Full Detail',
       dateTime: '',
       notes: '',
+      inspectionAcknowledged: false,
     })
     setErrors({})
+    setSubmitError(null)
     setSubmitSuccess(false)
   }
 
@@ -225,11 +285,10 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                      Quote Request Received!
+                      Request Received
                     </h3>
                     <p className="text-gray-300 text-sm sm:text-base max-w-md mx-auto mt-2 leading-relaxed">
-                      Thank you for contacting Quality Control Auto Detailing. We have received your quote request for your{' '}
-                      <span className="text-blue-300 font-semibold">{formData.vehicle || 'vehicle'}</span>. We will review your vehicle details and get back to you within 2 hours with an accurate quote and availability.
+                      Request received. Thank you for contacting Quality Control Auto Detailing. We will review your vehicle details and follow up with a custom quote and available appointment times.
                     </p>
                   </div>
 
@@ -246,10 +305,18 @@ export function Contact() {
               ) : (
                 <motion.form
                   key="form"
+                  action="https://formspree.io/f/xrpbeqlv"
+                  method="POST"
                   onSubmit={handleSubmit}
                   noValidate
                   className="space-y-6"
                 >
+                  {/* Hidden subject field for Formspree notification emails */}
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Quote Request — Quality Control Auto Detailing"
+                  />
                   {/* Trust Signals Ribbon (Item 4) */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-blue-500/[0.08] border border-blue-500/20 text-xs">
                     <div className="flex items-center gap-2 text-blue-200">
@@ -436,6 +503,62 @@ export function Contact() {
                       className="w-full rounded-xl bg-black/60 border border-white/15 px-4 py-3 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"
                     />
                   </div>
+
+                  {/* Pre-Service Inspection Acknowledgment Checkbox */}
+                  <div className="pt-1">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        id="inspectionAcknowledged"
+                        type="checkbox"
+                        name="inspectionAcknowledged"
+                        required
+                        checked={formData.inspectionAcknowledged}
+                        onChange={handleChange}
+                        className="mt-1 h-4 w-4 rounded border-white/20 bg-black/60 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 focus:ring-2 shrink-0 cursor-pointer accent-blue-600"
+                      />
+                      <span className="text-xs sm:text-sm text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
+                        I understand that Quality Control Auto Detailing may perform a visual pre-service inspection and take photos or video of my vehicle before work begins to document visible pre-existing conditions. I understand that normal detailing may reveal pre-existing damage, wear, defects, stains, paint issues, or other conditions that were not previously visible. <span className="text-blue-400">*</span>
+                      </span>
+                    </label>
+                    {errors.inspectionAcknowledged && (
+                      <p className="text-xs text-red-400 mt-1.5 ml-7">
+                        {errors.inspectionAcknowledged}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Friendly Error State with Visible Phone/Text Fallback */}
+                  {submitError && (
+                    <div
+                      role="alert"
+                      className="p-4 rounded-xl bg-red-500/10 border border-red-500/40 text-red-200 text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+                    >
+                      <div className="flex items-start gap-3">
+                        <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-white">
+                            We could not send your request right now. Please try again, call us, or text us directly.
+                          </p>
+                          <p className="text-xs text-red-300 mt-1">
+                            Direct line:{' '}
+                            <a
+                              href={`tel:${CONTACT_INFO.phoneRaw}`}
+                              className="underline font-bold text-white hover:text-blue-300 ml-1"
+                            >
+                              {CONTACT_INFO.phone}
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                      <a
+                        href={`tel:${CONTACT_INFO.phoneRaw}`}
+                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-white text-xs font-semibold border border-red-500/40 transition-colors"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>Call / Text</span>
+                      </a>
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button
